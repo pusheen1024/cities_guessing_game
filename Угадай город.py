@@ -3,18 +3,18 @@ from random import shuffle, uniform, choice
 from io import BytesIO
 import requests
 from PIL import Image
-from PyQt5 import uic
 from PyQt5.QtCore import QTimer
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5.QtGui import QPixmap
+from guessing_game import Ui_MainWindow
 
 cities_list = [city.strip() for city in open('cities.txt', encoding='utf8').readlines()]
 
 
-class GuessingGame(QMainWindow):
+class GuessingGame(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('guessing_game.ui', self)
+        super().setupUi(self)
         self.PROFIT = 10
         shuffle(cities_list)
         self.cur_city = 0
